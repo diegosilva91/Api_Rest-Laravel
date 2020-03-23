@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(array('prefix' => 'v1'), function() {
+    Route::resource('actions', 'ActionsController');
+    Route::resource('prices', 'PricesController');
+    Route::get('top','PricesController@top');
+});
