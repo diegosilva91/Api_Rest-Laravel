@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="icon" href="{{ URL::asset('/favicon.ico') }}" type="image/x-icon"/>
+        <link rel="icon" href="{{ URL::asset('/favicon.png') }}" type="image/x-icon"/>
         <!-- Styles -->
         <style>
             html, body {
