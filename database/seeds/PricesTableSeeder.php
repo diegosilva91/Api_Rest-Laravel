@@ -16,7 +16,7 @@ class PricesTableSeeder extends Seeder
         //
 
         $fake = Faker::create();
-        for($i = 1; $i<20; $i++) {
+        for($i = 0; $i<20; $i++) {
             $current_quantity = $fake->randomFloat(1,0,100);
             $action_id=$i*10+1;
             \DB::table('prices')->insert(array(
