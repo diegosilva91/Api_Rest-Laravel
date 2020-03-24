@@ -8,7 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link href="{{ URL::asset('/favicon.png') }}" rel="apple-touch-icon" type="image/png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('/favicon.png') }}">
+
         <!-- Styles -->
         <style>
             html, body {
