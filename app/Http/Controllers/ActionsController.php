@@ -25,13 +25,25 @@ class ActionsController extends Controller
     /**
      * Display historic
      *
+     * @param Request $request
      * @return AnonymousResourceCollection
      */
-    public function historic(){
+    public function historic(Request $request){
         $year=Carbon::now()->format('Y')-1;
         $month=Carbon::now()->format('m');
-
-        return ActionResource::collection(Actions::orderBy('created_at', 'desc')->whereYear('created_at','>=',$year)->whereMonth('created_at','>=',$month)->with('Price')->paginate(25));
+        if ($request->has('name')) {
+            return ActionResource::collection(Actions::orderBy('created_at', 'desc')
+                ->where('name', $request->input('name'))
+                ->whereYear('created_at','>=',$year)
+                ->whereMonth('created_at','>=',$month)
+                ->with('Price')
+                ->paginate(25));
+        }
+        return ActionResource::collection(Actions::orderBy('created_at', 'desc')
+            ->whereYear('created_at','>=',$year)
+            ->whereMonth('created_at','>=',$month)
+            ->with('Price')
+            ->paginate(25));
     }
     /**
      * Show the form for creating a new resource.
