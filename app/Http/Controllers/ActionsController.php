@@ -34,15 +34,19 @@ class ActionsController extends Controller
         if ($request->has('name')) {
             return ActionResource::collection(Actions::orderBy('created_at', 'desc')
                 ->where('name', $request->input('name'))
-                ->whereYear('created_at','>=',$year)
-                ->whereMonth('created_at','>=',$month)
-                ->with('Price')
+                ->with(['Price'=>function($query) use ($month, $year) {
+                    $query
+                        ->whereYear('created_at','>=',$year)
+                        ->whereMonth('created_at','>=',$month);
+                }])
                 ->paginate(25));
         }
         return ActionResource::collection(Actions::orderBy('created_at', 'desc')
-            ->whereYear('created_at','>=',$year)
-            ->whereMonth('created_at','>=',$month)
-            ->with('Price')
+            ->with(['Price'=>function($query) use ($month, $year) {
+                $query
+                ->whereYear('created_at','>=',$year)
+                ->whereMonth('created_at','>=',$month);
+            }])
             ->paginate(25));
     }
     /**
