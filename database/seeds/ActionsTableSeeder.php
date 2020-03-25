@@ -20,7 +20,7 @@ class ActionsTableSeeder extends Seeder
             $name = $faker->company();
             $unique_code =strtoupper(Str::limit($name,4,'')).$faker->randomNumber(3);
             $description = $faker->text(50);
-            $logo=$faker->imageUrl();
+            $logo=$faker->imageUrl(200,200,'business',true,'Faker');
             \DB::table('actions')->insert(array(
                 'name' => $name,
                 'unique_code'=>$unique_code,
