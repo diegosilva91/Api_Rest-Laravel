@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Actions;
+use App\Http\Resources\ActionResource;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,6 +21,16 @@ class ActionsController extends Controller
         return Actions::all();
     }
 
+    /**
+     *
+     *
+     */
+    public function historic(){
+        $year=Carbon::now()->format('Y')-1;
+        $month=Carbon::now()->format('m');
+
+        return ActionResource::collection(Actions::orderBy('created_at', 'desc')->whereYear('created_at','>=',$year)->whereMonth('created_at','>=',$month)->with('Price')->paginate(25));
+    }
     /**
      * Show the form for creating a new resource.
      *
