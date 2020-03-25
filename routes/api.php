@@ -21,4 +21,5 @@ Route::group(array('prefix' => 'v1'), function() {
     Route::resource('actions', 'ActionsController');
     Route::resource('prices', 'PricesController');
     Route::get('top','PricesController@top');
+    Route::get('historic','ActionsController@historic');
 });
