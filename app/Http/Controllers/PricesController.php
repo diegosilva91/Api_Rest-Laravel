@@ -30,9 +30,8 @@ class PricesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function top(){
-        $day=Carbon::now()->format('d')-1;
         $max_price= \DB::table('prices')->select('actions_id',\DB::raw('MAX(current_quantity) - MIN(current_quantity) AS max_price'))
-            ->whereDay('created_at','>=',$day)
+            ->whereBetween('created_at',[(Carbon::yesterday()),(Carbon::now())])
             ->groupBy('actions_id')
             ->orderBy('max_price','desc');
         $actions = \DB::table('actions')
