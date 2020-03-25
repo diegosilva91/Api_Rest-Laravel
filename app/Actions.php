@@ -10,6 +10,6 @@ class Actions extends Model
     protected $fillable=['name','unique_code','description','logo'];
     public function price()
     {
-        return $this->hasOne('App\Price');
+        return $this->hasMany('App\Price');
     }
 }

@@ -17,7 +17,7 @@ class CreatePricesTable extends Migration
             $table->increments('id');
             $table->decimal('current_quantity', 8, 2);
             $table->unsignedInteger('actions_id');
-            $table->foreign('actions_id')->references('id')->on('actions')->onDelete('cascade');
+            $table->foreign('actions_id')->references('id')->on('actions');
             $table->timestamps();
         });
     }
