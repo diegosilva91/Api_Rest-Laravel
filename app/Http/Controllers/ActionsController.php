@@ -7,6 +7,7 @@ use App\Http\Resources\ActionResource;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class ActionsController extends Controller
@@ -18,12 +19,13 @@ class ActionsController extends Controller
      */
     public function index()
     {
-        return Actions::all();
+        return Actions::paginate(25);
     }
 
     /**
+     * Display historic
      *
-     *
+     * @return AnonymousResourceCollection
      */
     public function historic(){
         $year=Carbon::now()->format('Y')-1;
