@@ -50,6 +50,22 @@ class ActionsController extends Controller
             ->paginate(25));
     }
     /**
+     * Display historic by action id
+     * @param int $id
+     * @return AnonymousResourceCollection
+     */
+    public function historicId($id){
+        $year=Carbon::now()->format('Y')-1;
+        $month=Carbon::now()->format('m');
+        return ActionResource::collection(Actions::where('id', $id)
+            ->with(['Price'=>function($query) use ($month, $year) {
+                $query
+                    ->whereYear('created_at','>=',$year)
+                    ->whereMonth('created_at','>=',$month);
+            }])
+            ->paginate(25));
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response
