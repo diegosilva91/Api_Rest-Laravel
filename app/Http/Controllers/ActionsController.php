@@ -33,7 +33,7 @@ class ActionsController extends Controller
         $month=Carbon::now()->format('m');
         if ($request->has('name')) {
             return ActionResource::collection(Actions::orderBy('created_at', 'desc')
-                ->where('name', $request->input('name'))
+                ->where('name', 'like',$request->input('name').'%')
                 ->with(['Price'=>function($query) use ($month, $year) {
                     $query
                         ->whereYear('created_at','>=',$year)
