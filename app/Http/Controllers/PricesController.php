@@ -97,11 +97,23 @@ class PricesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
         //
+        $prices=Price::find($id);
+        if(!$prices){
+            return response()->json(['error'=>array([
+                'code'=>404,
+                'message'=>'Can no t find it'],404
+            )]);
+        }
+        $prices->actions_id=$request->actions_id;
+        $prices->current_quantity=$request->current_quantity;
+        $prices->created_at = $request->created_at;
+        $prices->updated_at =$request->updated_at;
+        $prices->save();
     }
 
     /**
