@@ -84,6 +84,15 @@ class ActionsController extends Controller
     public function store(Request $request)
     {
         //
+        $action = Actions::create([
+            'name'=>$request->name,
+            'unique_code'=>$request->unique_code,
+            'description'=>$request->description,
+            'logo'=>$request->logo,
+            'created_at' => $request->created_at,
+            'updated_at' =>$request->updated_at,
+        ]);
+        return new ActionResource($action);
     }
 
     /**
@@ -118,6 +127,21 @@ class ActionsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $action=Actions::find($id);
+        if(!$action){
+            return response()->json(['error'=>array([
+                'code'=>404,
+                'message'=>'Can no t find it'],404
+            )]);
+        }
+        $action->name=$request->name;
+        $action->unique_code=$request->unique_code;
+        $action->description=$request->description;
+        $action->logo=$request->logo;
+        $action->created_at = $request->created_at;
+        $action->updated_at=$request->updated_at;
+        $action->save();
+        return new ActionResource($action);
     }
 
     /**
@@ -129,5 +153,15 @@ class ActionsController extends Controller
     public function destroy($id)
     {
         //
+        $action=Actions::find($id);
+        if(!$action){
+            return response()->json(['error'=>array([
+                'code'=>404,
+                'message'=>'Can no t find it'],404
+            )]);
+        }
+        $action->delete();
+        return response()->json(['code'=>204,
+            'message'=>'Delete correctly'],204);
     }
 }
