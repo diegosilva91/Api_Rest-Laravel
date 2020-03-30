@@ -62,7 +62,7 @@ class PricesController extends Controller
     {
         //
         $price = Price::create([
-            'actions_id'=>$request->id_actions,
+            'actions_id'=>$request->actions_id,
             'current_quantity'=>$request->current_quantity,
             'created_at' => $request->created_at,
             'updated_at' =>$request->updated_at,
