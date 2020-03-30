@@ -79,7 +79,7 @@ class PricesController extends Controller
     public function show($id)
     {
         //
-        return Prices::where('id', $id)->get();
+        return Price::where('id', $id)->get();
     }
 
     /**
