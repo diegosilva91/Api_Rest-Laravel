@@ -114,6 +114,7 @@ class PricesController extends Controller
         $prices->created_at = $request->created_at;
         $prices->updated_at =$request->updated_at;
         $prices->save();
+        return new PriceResource($prices);
     }
 
     /**
