@@ -19,7 +19,7 @@ class PricesTableSeeder extends Seeder
         for($i = 0; $i<20; $i++) {
             $current_quantity = $fake->randomFloat(1,0,100);
             $action_id=$i*10+1;
-            $date=$fake->dateTimeBetween('-15 days','now');
+            $date=$fake->dateTimeBetween('-15 days','yesterday');
             \DB::table('prices')->insert(array(
                 'current_quantity' => $current_quantity,
                 'actions_id'=>$action_id,
