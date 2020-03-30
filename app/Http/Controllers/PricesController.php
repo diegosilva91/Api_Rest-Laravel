@@ -61,6 +61,13 @@ class PricesController extends Controller
     public function store(Request $request)
     {
         //
+        $price = Price::create([
+            'actions_id'=>$request->id_actions,
+            'current_quantity'=>$request->current_quantity,
+            'created_at' => $request->created_at,
+            'updated_at' =>$request->updated_at,
+        ]);
+        return new PriceResource($price);
     }
 
     /**
