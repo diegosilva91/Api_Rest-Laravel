@@ -26,8 +26,8 @@ class Actions extends Model
             ->toSql();
         $query=\DB::table(\DB::raw('('.$subquery.') AS t'))
             ->select(\DB::raw('t.dates, t.min_value,t.max_value,
-                first_value(price_min.current_quantity) OVER(PARTITION BY price_min.created_at ORDER BY price_min.`created_at` desc) AS open_value,
-                last_value(price_max.current_quantity) OVER(PARTITION BY price_max.created_at ORDER BY price_min.`created_at` asc) AS close_value
+                first_value(price_min.current_quantity) OVER(PARTITION BY price_min.created_at ORDER BY price_min.created_at desc) AS open_value,
+                last_value(price_max.current_quantity) OVER(PARTITION BY price_max.created_at ORDER BY price_min.created_at asc) AS close_value
             '))
             ->join('prices AS price_min', 'price_min.created_at', '=', 't.min_created')
             ->join('prices AS price_max', 'price_max.created_at', '=', 't.max_created');
