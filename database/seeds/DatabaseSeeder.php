@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
 //        $this->call(UsersTableSeeder::class);
         //Model::unguard();
         $this->call('ActionsTableSeeder');
-        for ($i=0;$i<=40;$i++){
+        for ($i=0;$i<=20;$i++){
             $this->call('PricesTableSeeder');
         }
     }
