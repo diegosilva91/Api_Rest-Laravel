@@ -22,6 +22,7 @@ class ActionResource extends JsonResource
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
             'price' => $this->price,
+            'candle_chart'=>$this->Candle($this->id),
         ];
         //return parent::toArray($request);
     }
