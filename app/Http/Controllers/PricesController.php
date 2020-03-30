@@ -122,10 +122,20 @@ class PricesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
         //
+        $prices=Price::find($id);
+        if(!$prices){
+            return response()->json(['error'=>array([
+                'code'=>404,
+                'message'=>'Can no t find it'],404
+            )]);
+        }
+        $prices->delete();
+        return response()->json(['code'=>204,
+            'message'=>'Delete correctly'],204);
     }
 }
